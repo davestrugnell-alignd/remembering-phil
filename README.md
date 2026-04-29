@@ -75,17 +75,30 @@ CREATE POLICY "Approved uploads are visible"
   ON media_uploads FOR SELECT TO anon USING (approved = true);
 ```
 
-### 4. Add slideshow photos
+### 4. Populate slideshow photos
 
-Drop JPEG or PNG files into `public/photos/`, then list their filenames in `src/components/Slideshow.jsx`:
+The slideshow reads from the `slideshow_photos` table in Supabase. Create the table and insert your photos via the SQL editor:
 
-```js
-const PHOTOS = [
-  'photo-1.jpg',
-  'photo-2.jpg',
-  // ...
-]
+```sql
+CREATE TABLE slideshow_photos (
+  id          uuid        PRIMARY KEY DEFAULT gen_random_uuid(),
+  cloudinary_url text     NOT NULL,
+  sort_order  integer     DEFAULT 0,
+  created_at  timestamptz DEFAULT now()
+);
+
+ALTER TABLE slideshow_photos ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Slideshow photos are public"
+  ON slideshow_photos FOR SELECT TO anon USING (true);
+
+-- Then insert your photos (adjust URLs and sort_order as needed):
+INSERT INTO slideshow_photos (cloudinary_url, sort_order) VALUES
+  ('https://res.cloudinary.com/...', 1),
+  ('https://res.cloudinary.com/...', 2);
 ```
+
+Photos are served directly from Cloudinary — do not commit image files to the repo.
 
 ### 5. Personalise
 
@@ -132,8 +145,7 @@ src/
   App.jsx             — routes
   main.jsx            — entry point
   index.css           — global styles and CSS variables
-public/
-  photos/             — static slideshow images
+public/               — static assets (no images; all media served from Cloudinary)
 ```
 
 ## Build for production
