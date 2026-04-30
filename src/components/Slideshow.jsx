@@ -12,6 +12,7 @@ export default function Slideshow() {
       const { data, error } = await supabase
         .from('slideshow_photos')
         .select('id, cloudinary_url')
+        .eq('approved', true)
         .order('sort_order', { ascending: true })
         .order('created_at', { ascending: true })
 
