@@ -80,6 +80,13 @@ export default function UploadForm({ onUploaded }) {
       return
     }
 
+    if (cloudinaryResult.resource_type === 'image') {
+      const { error: slideshowError } = await supabase.from('slideshow_photos').insert({
+        cloudinary_url: applyTransform(cloudinaryResult.secure_url, 'c_fill,g_auto,ar_16:9'),
+      })
+      if (slideshowError) console.error('[UploadForm] Slideshow insert error:', slideshowError)
+    }
+
     setStatus('success')
     setFile(null)
     setFields(INITIAL)
