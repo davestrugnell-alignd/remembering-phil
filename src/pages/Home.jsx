@@ -5,7 +5,7 @@ import Slideshow from '../components/Slideshow.jsx'
 const PERSON = {
   name: 'Philip Morrall',       // TODO: full name
   dates: '1951 – 2026',          // TODO: birth and death year
-  quote: 'Traveller, adventurer, lover of life. Beloved partner of Nelius, brother to Ann and Andrew, and friend to many.', // TODO: a meaningful quote or epitaph
+  quote: 'Traveller, adventurer, lover of life. Beloved partner of Nelius, brother to Mary, Ann and Andrew, and friend to many.', // TODO: a meaningful quote or epitaph
   quoteAuthor: null,              // TODO: add attribution if the quote has a source
 }
 
