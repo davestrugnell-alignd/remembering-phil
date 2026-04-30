@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react'
-import { uploadToCloudinary, MAX_UPLOAD_BYTES, ACCEPTED_TYPES } from '../lib/cloudinary.js'
+import { uploadToCloudinary, applyTransform, MAX_UPLOAD_BYTES, ACCEPTED_TYPES } from '../lib/cloudinary.js'
 import { supabase } from '../lib/supabase.js'
 
 const INITIAL = { name: '', caption: '' }
@@ -69,7 +69,7 @@ export default function UploadForm({ onUploaded }) {
     const { error } = await supabase.from('media_uploads').insert({
       name: fields.name.trim() || null,
       caption: fields.caption.trim() || null,
-      cloudinary_url: cloudinaryResult.secure_url,
+      cloudinary_url: applyTransform(cloudinaryResult.secure_url),
       resource_type: cloudinaryResult.resource_type,
     })
 

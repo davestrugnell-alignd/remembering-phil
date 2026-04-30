@@ -49,6 +49,14 @@ export function uploadToCloudinary(file, onProgress) {
   })
 }
 
+/**
+ * Inject Cloudinary transformation parameters into an upload URL.
+ * e.g. .../upload/v123/file.jpg → .../upload/c_fill,g_auto,ar_4:3/v123/file.jpg
+ */
+export function applyTransform(url, transform = 'c_fill,g_auto,ar_4:3') {
+  return url.replace('/upload/', `/upload/${transform}/`)
+}
+
 /** Maximum allowed upload size in bytes (100 MB) */
 export const MAX_UPLOAD_BYTES = 100 * 1024 * 1024
 
