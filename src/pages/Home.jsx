@@ -24,8 +24,8 @@ export default function Home() {
           {PERSON.quoteAuthor && <cite>— {PERSON.quoteAuthor}</cite>}
         </blockquote>
         <div className="hero__nav-links">
-          <Link to="/memories" className="btn btn--primary">Read memories</Link>
-          <Link to="/gallery"  className="btn btn--outline">View gallery</Link>
+          <Link to="/memories" className="btn btn--primary">Share memories</Link>
+          <Link to="/gallery"  className="btn btn--outline">Add to gallery</Link>
         </div>
       </div>
     </section>
