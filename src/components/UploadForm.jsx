@@ -97,7 +97,7 @@ export default function UploadForm({ onUploaded }) {
   if (status === 'success') {
     return (
       <div className="form-confirmation" role="alert">
-        Thank you for sharing. Your photo or video will appear in the gallery once reviewed.
+        Thank you for sharing. Your photo or video has been added to the gallery.
         <br />
         <button
           className="btn btn--outline"

@@ -23,6 +23,9 @@ export default function Home() {
           {PERSON.quote}
           {PERSON.quoteAuthor && <cite>— {PERSON.quoteAuthor}</cite>}
         </blockquote>
+        <p className="hero__cta-hint">
+          Browse memories and photos shared by family and friends, or add your own.
+        </p>
         <div className="hero__nav-links">
           <Link to="/memories" className="btn btn--primary">Share memories</Link>
           <Link to="/gallery"  className="btn btn--outline">Add to gallery</Link>
